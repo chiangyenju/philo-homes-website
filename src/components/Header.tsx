@@ -1,72 +1,117 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, Smartphone, Monitor } from 'lucide-react'
+import { Menu, X, Search, Heart, ShoppingBag } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-  const menuItems = [
-    { name: 'Features', href: '#features' },
-    { name: 'For Designers', href: '#designers' },
-    { name: 'For Suppliers', href: '#suppliers' },
-    { name: 'For Homeowners', href: '#homeowners' },
-    { name: 'Demo', href: '#demo' }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const leftMenuItems = [
+    { name: 'SHOP', href: '#shop' },
+    { name: 'STYLE QUIZ', href: '#style-quiz' },
+    { name: 'SALES', href: '#sales' },
+    { name: 'INSPIRATION', href: '#inspiration' }
+  ]
+
+  const rightMenuItems = [
+    { name: 'STORY', href: '#story' },
+    { name: 'ABOUT US', href: '#about' }
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-black/20 backdrop-blur-sm' : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center"
-          >
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg mr-3"></div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Philo Homes
-            </span>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item, index) => (
+          {/* Left Menu Items */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {leftMenuItems.map((item, index) => (
               <motion.a
                 key={item.name}
                 href={item.href}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors uppercase"
+                style={{ 
+                  fontFamily: 'GT America, sans-serif',
+                  fontSize: '14px',
+                  letterSpacing: '0.3px',
+                  lineHeight: '24px'
+                }}
               >
                 {item.name}
               </motion.a>
             ))}
           </nav>
 
-          {/* CTA Buttons */}
+          {/* Center Logo */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="hidden md:flex items-center space-x-4"
+            className="flex items-center justify-center flex-1 lg:flex-none"
           >
-            <button className="text-blue-600 hover:text-blue-700 font-medium transition-colors">
-              Sign In
-            </button>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
-              <Smartphone size={16} />
-              Get App
-            </button>
+            <Image src="/logo/logo.png" alt="Philo Homes" width={120} height={40} className="h-8 w-auto" />
           </motion.div>
+
+          {/* Right Menu Items & CTA */}
+          <div className="hidden lg:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8">
+              {rightMenuItems.map((item, index) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: (leftMenuItems.length + index) * 0.1 }}
+                  className="text-white hover:text-gray-200 font-medium transition-colors uppercase"
+                  style={{ 
+                    fontFamily: 'GT America, sans-serif',
+                    fontSize: '14px',
+                    letterSpacing: '0.3px',
+                    lineHeight: '24px'
+                  }}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+            </nav>
+            
+                         <motion.div
+               initial={{ opacity: 0, x: 20 }}
+               animate={{ opacity: 1, x: 0 }}
+               transition={{ duration: 0.5 }}
+               className="flex items-center space-x-4"
+             >
+               <button className="text-white hover:text-gray-200 transition-colors p-2">
+                 <Search size={20} />
+               </button>
+               <button className="text-white hover:text-gray-200 transition-colors p-2">
+                 <Heart size={20} />
+               </button>
+               <button className="text-white hover:text-gray-200 transition-colors p-2">
+                 <ShoppingBag size={20} />
+               </button>
+             </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="lg:hidden p-2 text-white hover:text-gray-200 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,26 +124,34 @@ export default function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden py-4 border-t border-gray-200"
+            className="lg:hidden py-4 border-t border-white/20 bg-black/80 backdrop-blur-sm"
           >
             <nav className="flex flex-col space-y-4">
-              {menuItems.map((item) => (
+              {[...leftMenuItems, ...rightMenuItems].map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                  className="text-white hover:text-gray-200 font-medium transition-colors uppercase"
+                  style={{ 
+                    fontFamily: 'GT America, sans-serif',
+                    fontSize: '14px',
+                    letterSpacing: '0.3px',
+                    lineHeight: '24px'
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
-                <button className="text-blue-600 hover:text-blue-700 font-medium transition-colors text-left">
-                  Sign In
+              <div className="flex justify-center space-x-4 pt-4 border-t border-white/20">
+                <button className="text-white hover:text-gray-200 transition-colors p-2">
+                  <Search size={20} />
                 </button>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 w-fit">
-                  <Smartphone size={16} />
-                  Get App
+                <button className="text-white hover:text-gray-200 transition-colors p-2">
+                  <Heart size={20} />
+                </button>
+                <button className="text-white hover:text-gray-200 transition-colors p-2">
+                  <ShoppingBag size={20} />
                 </button>
               </div>
             </nav>
