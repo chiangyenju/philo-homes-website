@@ -11,7 +11,7 @@ export default function About() {
         {/* Hero Section - Refined Vintage Style */}
         <section className="relative min-h-screen overflow-hidden">
           <Image 
-            src="/images/about-image.png" 
+            src="/images/about-hero.png" 
             alt="About Philo Homes" 
             fill
             className="object-cover"
