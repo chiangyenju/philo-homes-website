@@ -4,39 +4,44 @@ import Image from 'next/image'
 
 export default function Community() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-vintage-cream">
       <Header />
       
       <main>
-        {/* Hero Section - Consistent Style */}
+        {/* Hero Section - Refined Vintage Style */}
         <section className="relative min-h-screen overflow-hidden">
           <Image 
-            src="/images/about-image-3.png" 
+            src="/images/community-hero.jpg" 
             alt="Community Coming Soon" 
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
           
           {/* Centered Content */}
           <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="text-center text-white max-w-3xl">
+            <div className="text-center text-white max-w-2xl">
               <h1 
-                className="text-6xl md:text-8xl font-bold tracking-wider mb-8 uppercase"
+                className="font-bold tracking-wider mb-6 uppercase"
                 style={{ 
                   fontFamily: 'GT America, sans-serif',
-                  letterSpacing: '2px'
+                  fontSize: '24px',
+                  lineHeight: '1.1',
+                  letterSpacing: '0.3px'
                 }}
               >
                 Coming Soon
               </h1>
               
+              <div className="vintage-divider bg-white/60 mx-auto mb-6"></div>
+              
               <p 
-                className="text-xs md:text-sm font-light uppercase tracking-widest opacity-80"
+                className="text-white/90 uppercase tracking-widest font-light"
                 style={{ 
                   fontFamily: 'GT America, sans-serif',
-                  letterSpacing: '3px'
+                  fontSize: '12px',
+                  letterSpacing: '2px'
                 }}
               >
                 Share your design challenges
@@ -45,42 +50,29 @@ export default function Community() {
           </div>
         </section>
 
-        {/* Share Your Challenges Section - Simplified */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        {/* Contact Section - Elegant Minimal */}
+        <section className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 
-                className="text-5xl md:text-6xl font-normal mb-8 leading-tight"
-                style={{ 
-                  fontFamily: 'Henry Trial, serif',
-                  color: '#10182B'
-                }}
-              >
+            <div className="text-center mb-24">
+              <div className="vintage-divider mb-12"></div>
+              
+              <h2 className="vintage-heading text-4xl md:text-5xl mb-8">
                 Tell Us More
               </h2>
-              <p 
-                className="text-xs uppercase tracking-widest text-gray-500 font-light"
-                style={{ 
-                  fontFamily: 'GT America, sans-serif',
-                  letterSpacing: '2px'
-                }}
-              >
+              
+              <p className="vintage-subheading">
                 Help us build better solutions
               </p>
             </div>
 
-            {/* Simplified Comment Form */}
-            <div className="bg-gray-50 rounded-lg p-12 mb-16">
-              <form action="#" method="POST" className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Refined Contact Form */}
+            <div className="bg-vintage-light rounded-none p-16 mb-20">
+              <form action="#" method="POST" className="space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
                     <label 
                       htmlFor="name" 
-                      className="block text-xs uppercase tracking-wide text-gray-600 mb-3 font-light"
-                      style={{ 
-                        fontFamily: 'GT America, sans-serif',
-                        letterSpacing: '1px'
-                      }}
+                      className="vintage-subheading block mb-4"
                     >
                       Name
                     </label>
@@ -89,19 +81,15 @@ export default function Community() {
                       id="name"
                       name="name"
                       required
-                      className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent focus:border-golden focus:ring-0 transition-colors text-lg"
-                      style={{ fontFamily: 'GT America, sans-serif' }}
+                      className="vintage-input w-full"
+                      placeholder="Your full name"
                     />
                   </div>
                   
                   <div>
                     <label 
                       htmlFor="email" 
-                      className="block text-xs uppercase tracking-wide text-gray-600 mb-3 font-light"
-                      style={{ 
-                        fontFamily: 'GT America, sans-serif',
-                        letterSpacing: '1px'
-                      }}
+                      className="vintage-subheading block mb-4"
                     >
                       Email
                     </label>
@@ -110,8 +98,8 @@ export default function Community() {
                       id="email"
                       name="email"
                       required
-                      className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent focus:border-golden focus:ring-0 transition-colors text-lg"
-                      style={{ fontFamily: 'GT America, sans-serif' }}
+                      className="vintage-input w-full"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
@@ -119,21 +107,23 @@ export default function Community() {
                 <div>
                   <label 
                     htmlFor="challenge-type" 
-                    className="block text-xs uppercase tracking-wide text-gray-600 mb-3 font-light"
-                    style={{ 
-                      fontFamily: 'GT America, sans-serif',
-                      letterSpacing: '1px'
-                    }}
+                    className="vintage-subheading block mb-4"
                   >
                     Challenge Type
                   </label>
                   <select
                     id="challenge-type"
                     name="challenge-type"
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent focus:border-golden focus:ring-0 transition-colors text-lg"
-                    style={{ fontFamily: 'GT America, sans-serif' }}
+                    className="vintage-input w-full appearance-none bg-transparent"
+                    style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                      backgroundPosition: 'right 0 center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5em 1.5em',
+                      paddingRight: '2.5rem'
+                    }}
                   >
-                    <option value="">Select one</option>
+                    <option value="">Select a challenge type</option>
                     <option value="furniture-selection">Furniture Selection</option>
                     <option value="color-coordination">Color Coordination</option>
                     <option value="space-planning">Space Planning</option>
@@ -147,11 +137,7 @@ export default function Community() {
                 <div>
                   <label 
                     htmlFor="message" 
-                    className="block text-xs uppercase tracking-wide text-gray-600 mb-3 font-light"
-                    style={{ 
-                      fontFamily: 'GT America, sans-serif',
-                      letterSpacing: '1px'
-                    }}
+                    className="vintage-subheading block mb-4"
                   >
                     Your Challenge
                   </label>
@@ -160,116 +146,104 @@ export default function Community() {
                     name="message"
                     rows={6}
                     required
-                    className="w-full px-0 py-4 border-0 border-b-2 border-gray-200 bg-transparent focus:border-golden focus:ring-0 transition-colors resize-none text-lg"
-                    style={{ fontFamily: 'GT America, sans-serif' }}
-                    placeholder="Tell us about your interior design challenge..."
+                    className="vintage-input w-full resize-none"
+                    placeholder="Describe your interior design challenge in detail..."
                   ></textarea>
                 </div>
 
                 <div className="text-center pt-8">
                   <button 
                     type="submit"
-                    className="bg-transparent border-2 text-golden border-golden hover:bg-golden hover:text-white hover:border-golden px-12 py-4 text-xs font-light transition-all duration-300 uppercase tracking-widest rounded-none"
-                    style={{ 
-                      fontFamily: 'GT America, sans-serif',
-                      letterSpacing: '2px'
-                    }}
+                    className="vintage-button"
                   >
-                    Submit
+                    Submit Challenge
                   </button>
                 </div>
               </form>
             </div>
 
-            {/* Minimal Challenge Types */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-              <div>
-                <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span 
-                    className="text-golden text-2xl font-bold"
-                    style={{ fontFamily: 'GT America, sans-serif' }}
-                  >
+            {/* Challenge Types Preview - Ultra Minimal */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+              <div className="group">
+                <div className="w-12 h-12 bg-vintage-light rounded-full mx-auto mb-8 flex items-center justify-center group-hover:bg-vintage-gold transition-all duration-300">
+                  <span className="vintage-subheading text-vintage-gold group-hover:text-white transition-colors">
                     01
                   </span>
                 </div>
-                <h3 
-                  className="text-lg font-normal mb-3"
-                  style={{ 
-                    fontFamily: 'Henry Trial, serif',
-                    color: '#10182B'
-                  }}
-                >
-                  Selection
+                <h3 className="vintage-heading text-lg mb-4 text-vintage-gold">
+                  Space Planning
                 </h3>
-                <p 
-                  className="text-xs uppercase tracking-wide text-gray-500 font-light"
-                  style={{ 
-                    fontFamily: 'GT America, sans-serif',
-                    letterSpacing: '1px'
-                  }}
-                >
-                  Finding the right pieces
+                <p className="vintage-subheading text-vintage-warm">
+                  Layout optimization
                 </p>
               </div>
 
-              <div>
-                <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span 
-                    className="text-golden text-2xl font-bold"
-                    style={{ fontFamily: 'GT America, sans-serif' }}
-                  >
+              <div className="group">
+                <div className="w-12 h-12 bg-vintage-light rounded-full mx-auto mb-8 flex items-center justify-center group-hover:bg-vintage-gold transition-all duration-300">
+                  <span className="vintage-subheading text-vintage-gold group-hover:text-white transition-colors">
                     02
                   </span>
                 </div>
-                <h3 
-                  className="text-lg font-normal mb-3"
-                  style={{ 
-                    fontFamily: 'Henry Trial, serif',
-                    color: '#10182B'
-                  }}
-                >
-                  Planning
+                <h3 className="vintage-heading text-lg mb-4 text-vintage-gold">
+                  Style Harmony
                 </h3>
-                <p 
-                  className="text-xs uppercase tracking-wide text-gray-500 font-light"
-                  style={{ 
-                    fontFamily: 'GT America, sans-serif',
-                    letterSpacing: '1px'
-                  }}
-                >
-                  Space optimization
+                <p className="vintage-subheading text-vintage-warm">
+                  Cohesive aesthetics
                 </p>
               </div>
 
-              <div>
-                <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span 
-                    className="text-golden text-2xl font-bold"
-                    style={{ fontFamily: 'GT America, sans-serif' }}
-                  >
+              <div className="group">
+                <div className="w-12 h-12 bg-vintage-light rounded-full mx-auto mb-8 flex items-center justify-center group-hover:bg-vintage-gold transition-all duration-300">
+                  <span className="vintage-subheading text-vintage-gold group-hover:text-white transition-colors">
                     03
                   </span>
                 </div>
-                <h3 
-                  className="text-lg font-normal mb-3"
-                  style={{ 
-                    fontFamily: 'Henry Trial, serif',
-                    color: '#10182B'
-                  }}
-                >
-                  Cohesion
+                <h3 className="vintage-heading text-lg mb-4 text-vintage-gold">
+                  Budget Solutions
                 </h3>
-                <p 
-                  className="text-xs uppercase tracking-wide text-gray-500 font-light"
-                  style={{ 
-                    fontFamily: 'GT America, sans-serif',
-                    letterSpacing: '1px'
-                  }}
-                >
-                  Style consistency
+                <p className="vintage-subheading text-vintage-warm">
+                  Smart investments
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Quote Section - Elegant */}
+        <section className="relative py-32 px-4 sm:px-6 lg:px-8 min-h-[600px] flex items-center">
+          <Image 
+            src="/images/quote-image-2.png" 
+            alt="Quote Background" 
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70"></div>
+          
+          <div className="relative max-w-4xl mx-auto text-center w-full">
+            <div className="vintage-divider bg-vintage-gold mb-12"></div>
+            
+            <blockquote 
+              className="text-2xl md:text-3xl leading-relaxed font-light italic mb-12"
+              style={{ 
+                fontFamily: 'Henry Trial, serif',
+                lineHeight: '1.6',
+                color: '#ffffff'
+              }}
+            >
+              "Your design challenges inspire our innovations."
+            </blockquote>
+            
+            <p 
+              className="uppercase tracking-widest font-light"
+              style={{ 
+                fontFamily: 'GT America, sans-serif',
+                fontSize: '12px',
+                letterSpacing: '2px',
+                color: '#C9A876'
+              }}
+            >
+              Community Driven Design
+            </p>
           </div>
         </section>
       </main>
