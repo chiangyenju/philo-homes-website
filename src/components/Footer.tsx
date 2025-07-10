@@ -124,7 +124,7 @@ export default function Footer() {
                   lineHeight: '20px'
                 }}
               >
-                "Curating a world of inspiration, we'll help you design a home where you feel at your best and thrive."
+                &ldquo;Curating a world of inspiration, we&apos;ll help you design a home where you feel at your best and thrive.&rdquo;
               </p>
             </motion.div>
           </div>
