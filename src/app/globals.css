@@ -40,3 +40,40 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom golden color utility */
+.bg-golden {
+  background-color: #D8A559;
+}
+
+.text-golden {
+  color: #D8A559;
+}
+
+.border-golden {
+  border-color: #D8A559;
+}
+
+.hover\:bg-golden:hover {
+  background-color: #D8A559;
+}
+
+.hover\:text-white:hover {
+  color: #ffffff;
+}
+
+.hover\:border-golden:hover {
+  border-color: #D8A559;
+}
+
+/* Focus ring styles for forms */
+.focus\:ring-golden:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(216, 165, 89, var(--tw-ring-opacity));
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}

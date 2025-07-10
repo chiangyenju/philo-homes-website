@@ -11,13 +11,13 @@ export default function Hero() {
         {/* Image 1 - LEFT AREA with text content */}
         <div className="relative">
           <Image 
-            src="/images/hero-1.jpg" 
+            src="/images/hero-1.png" 
             alt="Living Room Design" 
             width={600} 
             height={800} 
             className="w-full h-screen md:h-screen object-cover"
           />
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
           
           {/* Text Content - LEFT AREA */}
           <div className="absolute inset-0 flex items-center">
@@ -28,16 +28,15 @@ export default function Hero() {
                 transition={{ duration: 0.8 }}
               >
                 <h1 
-                  className="text-white mb-8 leading-tight font-normal"
+                  className="text-white mb-12 leading-none font-bold"
                   style={{ 
-                    fontFamily: 'Henry Trial, serif',
-                    fontSize: '32px',
-                    lineHeight: '48px',
-                    letterSpacing: '0.2px'
+                    fontFamily: 'GT America, sans-serif',
+                    fontSize: '4rem',
+                    lineHeight: '1',
+                    letterSpacing: '2px'
                   }}
                 >
-                  SHOP BEST SELLERS UP TO{' '}
-                  <span className="block">45% OFF!</span>
+                  COMING<br/>SOON
                 </h1>
               </motion.div>
 
@@ -46,14 +45,23 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <button 
-                  className="bg-transparent border-2 hover:bg-white hover:text-black px-8 py-3 text-sm font-medium transition-all duration-300 uppercase tracking-wide"
+                <p 
+                  className="text-xs uppercase tracking-widest opacity-80 mb-8 font-light"
                   style={{ 
-                    color: '#D8A559',
-                    borderColor: '#D8A559'
+                    fontFamily: 'GT America, sans-serif',
+                    letterSpacing: '3px'
                   }}
                 >
-                  SHOP SALE
+                  Your design journey starts here
+                </p>
+                <button 
+                  className="bg-transparent border-2 text-golden border-golden hover:bg-golden hover:text-white hover:border-golden px-12 py-4 text-xs font-light transition-all duration-300 uppercase tracking-widest rounded-none"
+                  style={{ 
+                    fontFamily: 'GT America, sans-serif',
+                    letterSpacing: '2px'
+                  }}
+                >
+                  Join Community
                 </button>
               </motion.div>
             </div>
@@ -63,7 +71,7 @@ export default function Hero() {
         {/* Image 2 */}
         <div className="relative">
           <Image 
-            src="/images/hero-2.jpeg" 
+            src="/images/hero-2.jpg" 
             alt="Bedroom Inspiration" 
             width={600} 
             height={800} 
