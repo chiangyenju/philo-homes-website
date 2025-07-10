@@ -230,7 +230,7 @@ export default function Community() {
                 color: '#ffffff'
               }}
             >
-              "Your design challenges inspire our innovations."
+              &ldquo;Your design challenges inspire our innovations.&rdquo;
             </blockquote>
             
             <p 

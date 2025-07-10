@@ -245,7 +245,7 @@ export default function About() {
                 color: '#ffffff'
               }}
             >
-              "We believe every home should tell a story—your story."
+              &ldquo;We believe every home should tell a story—your story.&rdquo;
             </blockquote>
             
             <p 
