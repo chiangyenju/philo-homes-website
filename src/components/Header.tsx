@@ -21,8 +21,7 @@ export default function Header() {
 
   const leftMenuItems = [
     { name: 'ABOUT US', href: '/about' },
-    { name: 'COMMUNITY', href: '/community' },
-    { name: 'DESIGN', href: '/design' }
+    { name: 'COMMUNITY', href: '/community' }
   ]
 
   return (
