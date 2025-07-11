@@ -14,6 +14,12 @@ export default function Design() {
   const sceneRef = useRef<HTMLDivElement>(null)
   const [currentSelection, setCurrentSelection] = useState('floor')
   const [isLoading, setIsLoading] = useState(true)
+  const [activeMaterials, setActiveMaterials] = useState({
+    floor: 0,
+    wall: 0,
+    vanity: 0,
+    bathtub: 0
+  })
   const designerRef = useRef<any>(null)
 
   useEffect(() => {
@@ -183,14 +189,14 @@ export default function Design() {
         this.scene = new window.THREE.Scene()
         this.scene.background = new window.THREE.Color(0x2c3e50)
         
-        // Camera
+        // Camera - Redecor-style frontal view
         this.camera = new window.THREE.PerspectiveCamera(
           60,
           container.clientWidth / container.clientHeight,
           0.1,
           1000
         )
-        this.camera.position.set(6, 4, 6)
+        this.camera.position.set(0, 3, 8)  // More frontal view like Redecor
         this.camera.lookAt(0, 1, 0)
         
         // Renderer
@@ -331,6 +337,8 @@ export default function Design() {
         const material = this.materials[category][index]
         let targetMeshes: any[] = []
         
+        console.log(`Applying material: ${material.name} to ${category}`)
+        
         switch(category) {
           case 'floor':
             targetMeshes = [this.meshes.floor]
@@ -347,23 +355,37 @@ export default function Design() {
         }
         
         targetMeshes.forEach(mesh => {
-          if (mesh) {
+          if (mesh && mesh.material) {
+            console.log(`Updating material for ${mesh.name || 'unnamed mesh'}`)
+            
             const startColor = mesh.material.color.clone()
             const endColor = new window.THREE.Color(material.color)
             const startRoughness = mesh.material.roughness
             const endRoughness = material.roughness
+            const startMetalness = mesh.material.metalness
+            const endMetalness = material.metalness
             
             let progress = 0
             const animate = () => {
-              progress += 0.1
+              progress += 0.05  // Slower transition for smoother effect
               if (progress <= 1) {
                 mesh.material.color.lerpColors(startColor, endColor, progress)
                 mesh.material.roughness = startRoughness + (endRoughness - startRoughness) * progress
-                mesh.material.metalness = material.metalness * progress
+                mesh.material.metalness = startMetalness + (endMetalness - startMetalness) * progress
+                mesh.material.needsUpdate = true  // Force material update
                 requestAnimationFrame(animate)
+              } else {
+                // Ensure final values are set
+                mesh.material.color.copy(endColor)
+                mesh.material.roughness = endRoughness
+                mesh.material.metalness = endMetalness
+                mesh.material.needsUpdate = true
+                console.log(`Material transition complete for ${mesh.name || 'unnamed mesh'}`)
               }
             }
             animate()
+          } else {
+            console.warn(`Mesh not found or missing material for ${category}`)
           }
         })
       }
@@ -380,7 +402,15 @@ export default function Design() {
       }
     }
 
-    designerRef.current = new RedecorstyleBathroomDesigner(sceneRef.current!)
+    const designer = new RedecorstyleBathroomDesigner(sceneRef.current!)
+    designerRef.current = designer
+    
+    // Make designer globally accessible for debugging
+    if (typeof window !== 'undefined') {
+      (window as any).designer = designer
+    }
+    
+    console.log('Designer initialized:', designer)
   }
 
   const materials = {
@@ -409,12 +439,28 @@ export default function Design() {
   }
 
   const selectHotspot = (target: string) => {
+    console.log(`Selecting hotspot: ${target}`)
     setCurrentSelection(target)
+    
+    // Update the designer's current selection
+    if (designerRef.current) {
+      designerRef.current.currentSelection = target
+    }
   }
 
   const applyMaterial = (category: string, index: number) => {
-    if (designerRef.current) {
+    console.log(`React: Applying material ${index} to ${category}`)
+    
+    if (designerRef.current && designerRef.current.applyMaterial) {
       designerRef.current.applyMaterial(category, index)
+      
+      // Update active material state
+      setActiveMaterials(prev => ({
+        ...prev,
+        [category]: index
+      }))
+    } else {
+      console.error('Designer not ready or applyMaterial method not found')
     }
   }
 
@@ -499,35 +545,51 @@ export default function Design() {
           <div ref={sceneRef} className="w-full h-full relative">
             {/* Hotspots */}
             <button 
-              className={`absolute w-10 h-10 border-3 border-white/80 rounded-full bg-white/10 cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:bg-white/30 hover:scale-110 ${currentSelection === 'floor' ? 'bg-red-500/80 border-red-400 shadow-red-500/50' : ''}`}
+              className={`absolute w-10 h-10 border-3 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:scale-110 ${
+                currentSelection === 'floor' 
+                  ? 'bg-red-500/80 border-red-400 shadow-lg shadow-red-500/50' 
+                  : 'border-white/80 bg-white/10 hover:bg-white/30'
+              }`}
               style={{ bottom: '20%', left: '45%' }}
               onClick={() => selectHotspot('floor')}
             >
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div className={`w-2 h-2 rounded-full ${currentSelection === 'floor' ? 'bg-white' : 'bg-white'}`}></div>
             </button>
             
             <button 
-              className={`absolute w-10 h-10 border-3 border-white/80 rounded-full bg-white/10 cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:bg-white/30 hover:scale-110 ${currentSelection === 'wall' ? 'bg-red-500/80 border-red-400 shadow-red-500/50' : ''}`}
+              className={`absolute w-10 h-10 border-3 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:scale-110 ${
+                currentSelection === 'wall' 
+                  ? 'bg-red-500/80 border-red-400 shadow-lg shadow-red-500/50' 
+                  : 'border-white/80 bg-white/10 hover:bg-white/30'
+              }`}
               style={{ top: '25%', right: '30%' }}
               onClick={() => selectHotspot('wall')}
             >
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div className={`w-2 h-2 rounded-full ${currentSelection === 'wall' ? 'bg-white' : 'bg-white'}`}></div>
             </button>
             
             <button 
-              className={`absolute w-10 h-10 border-3 border-white/80 rounded-full bg-white/10 cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:bg-white/30 hover:scale-110 ${currentSelection === 'vanity' ? 'bg-red-500/80 border-red-400 shadow-red-500/50' : ''}`}
+              className={`absolute w-10 h-10 border-3 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:scale-110 ${
+                currentSelection === 'vanity' 
+                  ? 'bg-red-500/80 border-red-400 shadow-lg shadow-red-500/50' 
+                  : 'border-white/80 bg-white/10 hover:bg-white/30'
+              }`}
               style={{ bottom: '35%', left: '25%' }}
               onClick={() => selectHotspot('vanity')}
             >
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div className={`w-2 h-2 rounded-full ${currentSelection === 'vanity' ? 'bg-white' : 'bg-white'}`}></div>
             </button>
             
             <button 
-              className={`absolute w-10 h-10 border-3 border-white/80 rounded-full bg-white/10 cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:bg-white/30 hover:scale-110 ${currentSelection === 'bathtub' ? 'bg-red-500/80 border-red-400 shadow-red-500/50' : ''}`}
+              className={`absolute w-10 h-10 border-3 rounded-full cursor-pointer transition-all duration-300 flex items-center justify-center backdrop-blur-lg z-10 hover:scale-110 ${
+                currentSelection === 'bathtub' 
+                  ? 'bg-red-500/80 border-red-400 shadow-lg shadow-red-500/50' 
+                  : 'border-white/80 bg-white/10 hover:bg-white/30'
+              }`}
               style={{ bottom: '30%', right: '20%' }}
               onClick={() => selectHotspot('bathtub')}
             >
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div className={`w-2 h-2 rounded-full ${currentSelection === 'bathtub' ? 'bg-white' : 'bg-white'}`}></div>
             </button>
           </div>
         </div>
@@ -538,7 +600,7 @@ export default function Design() {
             {materials[currentSelection as keyof typeof materials]?.map((material, index) => (
               <div
                 key={index}
-                className={`relative w-30 h-32 rounded-lg cursor-pointer transition-all duration-300 border-3 border-transparent overflow-hidden flex-shrink-0 hover:transform hover:-translate-y-1 hover:shadow-xl ${index === 0 ? 'border-blue-400 transform -translate-y-1' : ''}`}
+                className={`relative w-30 h-32 rounded-lg cursor-pointer transition-all duration-300 border-3 border-transparent overflow-hidden flex-shrink-0 hover:transform hover:-translate-y-1 hover:shadow-xl ${activeMaterials[currentSelection as keyof typeof activeMaterials] === index ? 'border-blue-400 transform -translate-y-1 shadow-lg shadow-blue-400/30' : ''}`}
                 onClick={() => applyMaterial(currentSelection, index)}
               >
                 <div 
