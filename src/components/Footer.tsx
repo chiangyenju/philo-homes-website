@@ -9,7 +9,6 @@ export default function Footer() {
     About: [
       { name: 'About Us', href: '#about' },
       { name: 'Trade Program', href: '#trade' },
-      { name: 'Design Service', href: '#design' },
       { name: 'TCL Magazine', href: '#magazine' },
       { name: 'Stock With Us', href: '#stock' }
     ],

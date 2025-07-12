@@ -1,123 +1,209 @@
 # Philo Homes Website
 
-A modern, responsive marketing website for Philo Homes - the revolutionary 3-sided marketplace connecting interior designers, furniture suppliers, and homeowners through immersive 3D room design.
+A modern, elegant website for Philo Homes featuring an AI-powered room designer that allows users to generate furnished rooms and swap furniture pieces using generative AI.
 
-## 🚀 Overview
+## Features
 
-This website serves as the primary marketing and web platform for Philo Homes, showcasing the mobile app's capabilities and providing a gateway for users to discover and engage with the platform.
+### 🏠 Core Website
+- **Modern Design**: Clean, sophisticated interface with premium aesthetics
+- **Responsive Layout**: Optimized for all devices and screen sizes
+- **Interactive Navigation**: Smooth animations and user-friendly navigation
+- **About & Community Pages**: Information about Philo Homes and community engagement
 
-## ✨ Features
+### 🎨 AI Room Designer (NEW)
+- **AI Room Generation**: Create fully furnished rooms from text prompts
+- **Furniture Detection**: AI-powered identification of furniture pieces in images
+- **Smart Furniture Swapping**: Replace furniture using advanced AI inpainting
+- **Interactive Canvas**: Click and select furniture pieces to customize
+- **Real-time Preview**: See changes instantly with smooth animations
+- **Download Designs**: Save your custom room designs
 
-### Marketing Pages
-- **Hero Section**: Compelling headline with app download CTAs
-- **Features Showcase**: Highlighting key platform benefits
-- **User Types**: Dedicated sections for Designers, Suppliers, and Homeowners
-- **3D Demo Section**: Interactive preview capabilities (placeholder for Babylon.js integration)
-- **Call-to-Action**: Download buttons and contact information
+## Tech Stack
 
-### Technical Features
-- **Modern Design**: Beautiful gradient backgrounds and animations
-- **Responsive**: Mobile-first design with Tailwind CSS
-- **Animations**: Smooth scroll animations with Framer Motion
-- **Performance**: Fast loading with Next.js 14
-- **3D Ready**: Babylon.js dependencies installed for future integration
-
-## 🛠 Tech Stack
-
-- **Framework**: Next.js 14 with App Router
-- **Styling**: Tailwind CSS
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **3D Engine**: Babylon.js (ready for integration)
-- **Language**: TypeScript
+- **Canvas**: Fabric.js for interactive furniture selection
+- **AI Integration**: Ready for OpenAI, Stability AI, or custom models
+- **Database**: Supabase (configured)
+- **Authentication**: Clerk (configured)
 
-## 📦 Installation
+## AI Room Designer Architecture
 
-```bash
-# Install dependencies
-npm install
+The AI Room Designer uses a three-stage pipeline:
 
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+```
+1. Text Prompt → AI Image Generation → Furnished Room
+2. Room Image → Computer Vision → Furniture Detection
+3. User Selection + New Furniture → AI Inpainting → Updated Room
 ```
 
-## 🎨 Components
+### Supported AI Services
+- **OpenAI**: DALL-E 3 for generation, GPT-4 Vision for detection
+- **Stability AI**: SDXL for generation and inpainting
+- **Replicate**: Access to various open-source models
+- **Custom Models**: YOLO, SAM, and other computer vision models
 
-### Core Components
-- `Header.tsx` - Navigation with mobile menu
-- `Hero.tsx` - Main landing section
-- `Features.tsx` - Platform benefits grid
-- `UserTypes.tsx` - Three user type showcase
-- `Demo3D.tsx` - 3D capabilities preview
-- `CTA.tsx` - Final call-to-action section
+## Getting Started
 
-### Design System
-- **Colors**: Blue and purple gradient theme
-- **Typography**: Modern font stack with gradient text effects
-- **Spacing**: Consistent 24px section padding
-- **Shadows**: Subtle elevation with hover effects
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-## 🔮 Future Enhancements
+### Installation
 
-### Phase 1 - 3D Integration
-- [ ] Integrate actual Babylon.js 3D room designer
-- [ ] Add furniture model loading from mobile app assets
-- [ ] Implement interactive 3D demo
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd philo-homes-website
+   ```
 
-### Phase 2 - Web App Features
-- [ ] User authentication system
-- [ ] Basic room designer for web
-- [ ] Furniture catalog browsing
-- [ ] Shopping cart functionality
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Phase 3 - Advanced Features
-- [ ] Real-time collaboration tools
-- [ ] Advanced user dashboards
-- [ ] Payment processing
-- [ ] Analytics integration
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Fill in your API keys for the AI services you want to use:
+   - `OPENAI_API_KEY` - For OpenAI services
+   - `STABILITY_API_KEY` - For Stability AI
+   - `REPLICATE_API_TOKEN` - For Replicate
+   - Additional keys as needed
 
-## 🚀 Deployment
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-The website is ready for deployment on:
-- **Vercel** (recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- **Traditional hosting**
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Environment Variables
-Create a `.env.local` file for:
+## AI Setup
+
+The AI Room Designer is currently set up with mock APIs for development. To enable full AI functionality:
+
+1. **Read the Setup Guide**: Check `AI_SETUP_GUIDE.md` for detailed instructions
+2. **Choose AI Provider**: Select from OpenAI, Stability AI, or Replicate
+3. **Configure APIs**: Replace mock implementations with real AI service calls
+4. **Test Features**: Start with room generation, then add detection and swapping
+
+### Development vs Production
+
+- **Development**: Uses mock APIs and placeholder images for testing
+- **Production**: Requires real AI service integrations and API keys
+
+## Project Structure
+
 ```
-NEXT_PUBLIC_APP_DOWNLOAD_URL=your-app-store-url
-NEXT_PUBLIC_CONTACT_EMAIL=contact@philohomes.com
+src/
+├── app/
+│   ├── design/           # AI Room Designer page
+│   ├── api/              # API routes for AI functionality
+│   │   ├── generate-room/    # Room generation endpoint
+│   │   ├── detect-furniture/ # Furniture detection endpoint
+│   │   └── swap-furniture/   # Furniture swapping endpoint
+│   ├── about/            # About page
+│   ├── community/        # Community page
+│   └── page.tsx          # Home page
+├── components/
+│   ├── RoomGenerator.tsx     # AI room generation component
+│   ├── FurnitureSwapper.tsx  # Interactive furniture swapping
+│   ├── FurnitureDatabase.tsx # Furniture catalog component
+│   ├── Header.tsx            # Navigation header
+│   ├── Footer.tsx            # Footer component
+│   └── Hero.tsx              # Homepage hero section
+└── globals.css           # Global styles and Tailwind config
 ```
 
-## 📱 Mobile App Integration
+## Available Scripts
 
-This website complements the React Native mobile app by:
-- Driving app downloads through strategic CTAs
-- Providing web-based previews of mobile features
-- Serving as a landing page for marketing campaigns
-- Offering web-based tools for users who prefer desktop
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-## 🎯 SEO & Performance
+## Key Features Explained
 
-- **Meta Tags**: Properly configured for social sharing
-- **Performance**: Optimized images and lazy loading
-- **Mobile First**: Responsive design for all devices
-- **Analytics Ready**: Google Analytics integration ready
+### AI Room Generation
+- Users select room type (living room, bedroom, etc.)
+- Choose interior style (modern, traditional, etc.)
+- Add custom details via text prompt
+- AI generates a fully furnished room image
 
-## 📞 Support & Contact
+### Furniture Detection
+- Computer vision analyzes the generated room
+- Identifies individual furniture pieces
+- Creates interactive selection areas
+- Provides confidence scores for each detection
 
-For questions about the website development:
-- Email: contact@philohomes.com
-- Project Repository: [Mobile App](../README.md)
+### Furniture Swapping
+- Users click on detected furniture pieces
+- Browse furniture database with filters
+- Select replacement furniture
+- AI inpainting seamlessly replaces the item
+- Maintains lighting, shadows, and perspective
 
----
+## Customization
 
-Built with ❤️ using Next.js, Tailwind CSS, and modern web technologies.
+### Adding New Furniture
+1. Add items to the furniture database in `FurnitureDatabase.tsx`
+2. Include high-quality reference images
+3. Add descriptive AI prompts for each piece
+4. Configure pricing and metadata
+
+### Styling Changes
+- Modify Tailwind classes in components
+- Update global styles in `globals.css`
+- Customize animations in Framer Motion components
+
+### AI Model Configuration
+- Adjust generation parameters in API routes
+- Modify prompts for better results
+- Configure detection thresholds
+- Optimize for your specific use cases
+
+## Cost Considerations
+
+AI usage costs vary by provider and usage:
+- Room Generation: ~$0.01-0.04 per image
+- Furniture Detection: ~$0.01 per analysis
+- Furniture Swapping: ~$0.02-0.05 per swap
+
+For 1000 monthly users with 5 designs each:
+- **Estimated monthly cost**: $300-600
+- **Cost per user**: $0.30-0.60
+
+## Performance Optimization
+
+- **Image Caching**: Generated images are cached for reuse
+- **Progressive Loading**: Low-resolution previews load first
+- **Background Processing**: Heavy AI operations run asynchronously
+- **Optimized Prompts**: Carefully crafted for faster, better results
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For issues with the AI Room Designer:
+1. Check the `AI_SETUP_GUIDE.md` for common solutions
+2. Review API provider documentation
+3. Open an issue with detailed error information
+
+For general website issues:
+- Open an issue on GitHub
+- Include steps to reproduce
+- Provide browser and device information
