@@ -15,6 +15,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Type checking: TypeScript runs automatically during build
 - No test runner is currently configured
 
+### Important: ESLint Checks
+**ALWAYS run `npm run lint` before committing code** to catch common errors:
+- Unescaped quotes: Use `&ldquo;` `&rdquo;` for double quotes, `&apos;` for apostrophes
+- Unused imports: Remove any imported but unused components
+- Other React/Next.js best practices
+
+Common ESLint fixes:
+- `'` → `&apos;`
+- `"` → `&ldquo;` and `&rdquo;`
+- Remove unused imports from 'lucide-react' or other libraries
+
 ## Architecture Overview
 
 This is a Next.js 15 website for Philo Homes, a real estate company, with plans for an AI-powered room designer feature.
