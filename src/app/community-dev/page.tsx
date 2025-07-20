@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
-import { Heart, MessageCircle, Bookmark, Plus, Search, Filter, TrendingUp, Award, Users, Sparkles } from 'lucide-react'
+import { Heart, MessageCircle, Bookmark, Plus, Search, Filter, TrendingUp, Sparkles } from 'lucide-react'
 
 export default function Community() {
   const [activeTab, setActiveTab] = useState<'all' | 'layouts' | 'designers' | 'create' | 'discuss'>('all')
@@ -836,7 +836,7 @@ export default function Community() {
                               <p>
                                 <span className="font-medium">{activity.user}</span>
                                 <span className="text-vintage-dark/70"> {activity.action} </span>
-                                <span className="text-vintage-gold hover:underline cursor-pointer">"{activity.thread}"</span>
+                                <span className="text-vintage-gold hover:underline cursor-pointer">&ldquo;{activity.thread}&rdquo;</span>
                               </p>
                               <p className="text-xs text-vintage-dark/60 mt-1">{activity.time}</p>
                             </div>
@@ -866,7 +866,7 @@ export default function Community() {
 
                   {/* Community Stats */}
                   <div className="bg-vintage-light rounded-lg p-4">
-                    <h3 className="font-semibold mb-3" style={{ fontFamily: 'GT America, sans-serif' }}>Today's Stats</h3>
+                    <h3 className="font-semibold mb-3" style={{ fontFamily: 'GT America, sans-serif' }}>Today&apos;s Stats</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>New Threads</span>

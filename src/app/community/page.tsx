@@ -66,7 +66,7 @@ export default function Community() {
                 lineHeight: '2'
               }}
             >
-              We're building something special—a place where design enthusiasts, homeowners, 
+              We&apos;re building something special—a place where design enthusiasts, homeowners, 
               and professionals come together to share ideas, inspire each other, and create 
               beautiful spaces.
             </p>
