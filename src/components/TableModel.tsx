@@ -1,7 +1,7 @@
 'use client'
 
 import { useLoader } from '@react-three/fiber'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
