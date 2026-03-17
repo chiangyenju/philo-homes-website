@@ -9,15 +9,31 @@ import Link from 'next/link'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+
+      // Update scrolled state for background
+      setIsScrolled(currentScrollY > 50)
+
+      // Hide header when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold
+        setIsHidden(true)
+      } else {
+        // Scrolling up or at top
+        setIsHidden(false)
+      }
+
+      setLastScrollY(currentScrollY)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   const leftMenuItems = [
     { name: 'ABOUT US', href: '/about' },
@@ -25,11 +41,15 @@ export default function Header() {
   ]
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled ? 'backdrop-blur-xl border-b border-vintage-gold/20' : 'bg-transparent'
-    }`} style={{
-      backgroundColor: isScrolled ? 'rgba(16, 24, 43, 0.95)' : 'transparent'
-    }}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'backdrop-blur-xl border-b border-vintage-gold/20' : 'bg-transparent'
+      }`}
+      style={{
+        backgroundColor: '#101A2E',
+        transform: isHidden ? 'translateY(-100%)' : 'translateY(0)',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:grid lg:grid-cols-3">
           {/* Left Menu Items - Hidden on Mobile */}
@@ -44,7 +64,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className="text-white hover:text-vintage-gold font-normal transition-all duration-300 uppercase tracking-wider group"
-                  style={{ 
+                  style={{
                     fontFamily: 'GT America, sans-serif',
                     fontSize: '12px',
                     letterSpacing: '1.5px'
@@ -65,12 +85,12 @@ export default function Header() {
             className="flex items-center justify-center"
           >
             <Link href="/" className="group">
-              <Image 
-                src="/logo/logo.png" 
-                alt="Philo Homes" 
-                width={160} 
-                height={50} 
-                className="h-12 w-auto transition-all duration-300 group-hover:scale-105" 
+              <Image
+                src="/logo/logo.png"
+                alt="Philo Homes"
+                width={160}
+                height={50}
+                className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
               />
             </Link>
           </motion.div>
@@ -116,7 +136,7 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   className="text-white hover:text-vintage-gold font-normal transition-all duration-300 uppercase tracking-wider"
-                  style={{ 
+                  style={{
                     fontFamily: 'GT America, sans-serif',
                     fontSize: '12px',
                     letterSpacing: '1.5px'
@@ -126,7 +146,7 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              
+
               <div className="flex justify-center space-x-6 pt-6 border-t border-white/10">
                 <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
                   <Search size={18} strokeWidth={1.5} />
@@ -144,4 +164,4 @@ export default function Header() {
       </div>
     </header>
   )
-} 
+}
