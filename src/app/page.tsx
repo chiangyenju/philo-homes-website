@@ -379,7 +379,7 @@ export default function Home() {
             </div>
 
             {/* Step Progress - Clickable */}
-            <div className="flex items-center justify-center gap-8 mb-12">
+            <div className="flex items-center justify-center gap-4 md:gap-8 mb-12">
               {['Capture', 'Style', '3D View', 'Results'].map((label, i) => (
                 <button
                   key={label}
@@ -405,7 +405,7 @@ export default function Home() {
             </div>
 
             {/* Demo Content - Fixed size container */}
-            <div className="max-w-2xl mx-auto h-[520px]">
+            <div className="max-w-2xl mx-auto h-[480px] md:h-[520px]">
               <AnimatePresence mode="wait">
                 {/* Step 0: Video Recording */}
                 {demoStep === 0 && (
@@ -467,7 +467,7 @@ export default function Home() {
                     {/* Room Type - Horizontal scroll circles */}
                     <div className="mb-4">
                       <p className="text-[10px] text-white/60 uppercase tracking-wider mb-3">Room Type</p>
-                      <div className="flex gap-4 justify-center py-1 px-1">
+                      <div className="flex gap-3 md:gap-4 justify-center py-1 px-1 overflow-x-auto">
                         {roomTypes.map((room) => (
                           <div key={room.id} className="flex flex-col items-center flex-shrink-0">
                             <div
@@ -560,10 +560,10 @@ export default function Home() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="h-full w-full flex gap-5"
+                    className="h-full w-full flex flex-col md:flex-row gap-4 md:gap-5"
                   >
                     {/* Left side - Result Image with thumbnails */}
-                    <div className="flex-1 flex flex-col">
+                    <div className="flex-1 flex flex-col min-h-0">
                       {/* Main Result Image */}
                       <div className="flex-1 rounded-xl overflow-hidden relative">
                         <AnimatePresence mode="wait">
@@ -615,7 +615,7 @@ export default function Home() {
                     </div>
 
                     {/* Right side - Furniture panel */}
-                    <div className="w-[180px] bg-[#1A2436] rounded-xl p-4 flex flex-col">
+                    <div className="w-full md:w-[180px] bg-[#1A2436] rounded-xl p-4 flex flex-col max-h-[200px] md:max-h-none overflow-y-auto">
                       <div className="flex items-center justify-between mb-3">
                         <p className="text-xs text-white font-medium">Furniture Used</p>
                         <span className="text-[10px] text-[#D1903E]">{galleryImages[currentResultImage].furniture.length} items</span>

@@ -189,18 +189,18 @@ export default function About() {
                 no waiting. Generate new options in minutes, not months. Create spaces that are
                 professionally designed and ready for your home.
               </p>
-              <div className="flex justify-center gap-12 md:gap-20">
+              <div className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-20">
                 <div className="text-center">
-                  <p className="text-4xl text-[#D1903E] font-medium mb-2">50+</p>
-                  <p className="text-xs text-white/60 uppercase tracking-wider">Years Combined<br />Experience</p>
+                  <p className="text-3xl md:text-4xl text-[#D1903E] font-medium mb-2">50+</p>
+                  <p className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">Years Combined<br />Experience</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-4xl text-[#D1903E] font-medium mb-2">10+</p>
-                  <p className="text-xs text-white/60 uppercase tracking-wider">Supply Chain<br />Partners</p>
+                  <p className="text-3xl md:text-4xl text-[#D1903E] font-medium mb-2">10+</p>
+                  <p className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">Supply Chain<br />Partners</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-4xl text-[#D1903E] font-medium mb-2">5-10 min</p>
-                  <p className="text-xs text-white/60 uppercase tracking-wider">vs. 1 Month<br />Traditional</p>
+                  <p className="text-3xl md:text-4xl text-[#D1903E] font-medium mb-2 whitespace-nowrap">5-10 min</p>
+                  <p className="text-[10px] md:text-xs text-white/60 uppercase tracking-wider">vs. 1 Month<br />Traditional</p>
                 </div>
               </div>
             </motion.div>

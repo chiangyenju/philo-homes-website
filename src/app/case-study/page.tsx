@@ -108,7 +108,7 @@ export default function CaseStudy() {
         <section className="py-12">
           <div className="max-w-[1200px] mx-auto px-6">
             {/* Case Study Thumbnails */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-14 max-w-[1000px] mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 lg:gap-16 mb-14 max-w-[1000px] mx-auto px-4">
               {caseStudies.map((study, index) => (
                 <div
                   key={study.id}
