@@ -49,20 +49,20 @@ const layoutTemplates = [
 const flowSteps = [
   {
     num: 1,
-    title: 'Designer algorithm driven',
-    description: 'AI trained on professional interior design principles',
+    title: 'Professional-grade AI',
+    description: 'Trained on principles from award-winning interior designers',
     image: '/ai-flow/step-1-removebg.png',
   },
   {
     num: 2,
-    title: 'Ready-made templates',
-    description: 'Choose from curated templates designed by professionals',
+    title: 'Curated templates',
+    description: 'Select from designs crafted by professional stylists',
     image: '/ai-flow/step-2-removebg.png',
   },
   {
     num: 3,
-    title: 'One-click purchase delivery',
-    description: 'Buy the furniture directly and get it delivered to your door',
+    title: 'Shop the look',
+    description: 'Purchase every piece directly, delivered to your door',
     image: '/ai-flow/step-3-removebg.png',
   },
 ]
@@ -88,10 +88,10 @@ const galleryImages = [
     style: 'Modern',
     room: 'Bedroom',
     furniture: [
-      { name: 'Platform Bed', image: '/images/products/modern/bed.png', price: '$1,299' },
-      { name: 'Nightstand', image: '/images/products/modern/nightstand.png', price: '$349' },
-      { name: 'Table Lamp', image: '/images/products/modern/lamp.png', price: '$189' },
-      { name: 'Wall Art', image: '/images/products/modern/painting.png', price: '$249' },
+      { name: 'Platform Bed', image: '/images/templates/bedroom-1/bed.png', price: '$1,299' },
+      { name: 'Nightstand', image: '/images/templates/bedroom-1/nightstand.png', price: '$349' },
+      { name: 'Table Lamp', image: '/images/templates/bedroom-1/lamp.png', price: '$189' },
+      { name: 'Wall Art', image: '/images/templates/bedroom-1/painting.png', price: '$249' },
     ]
   },
   {
@@ -99,10 +99,10 @@ const galleryImages = [
     style: 'Traditional',
     room: 'Bedroom',
     furniture: [
-      { name: 'Classic Bed', image: '/images/products/traditional/bed.png', price: '$1,599' },
-      { name: 'Nightstand', image: '/images/products/traditional/nightstand.jpg', price: '$449' },
-      { name: 'Table Lamp', image: '/images/products/traditional/lamp.png', price: '$229' },
-      { name: 'Cabinet', image: '/images/products/traditional/cabinet.png', price: '$899' },
+      { name: 'Classic Bed', image: '/images/templates/bedroom-2/bed.png', price: '$1,599' },
+      { name: 'Nightstand', image: '/images/templates/bedroom-2/nightstand.jpg', price: '$449' },
+      { name: 'Table Lamp', image: '/images/templates/bedroom-2/lamp.png', price: '$229' },
+      { name: 'Cabinet', image: '/images/templates/bedroom-2/cabinet.png', price: '$899' },
     ]
   },
 ]
@@ -200,6 +200,46 @@ export default function Home() {
       <Header />
 
       <main className="pt-20">
+        {/* Section 0: Try It Now - QR Code */}
+        <section className="py-16 bg-[#101A2E]">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+              {/* QR Code */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="w-44 h-44 rounded-2xl border-2 border-[#D1903E] p-2 shadow-2xl">
+                  <div className="w-full h-full rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/qr-code.png"
+                      alt="Scan to try Philo Homes"
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Content */}
+              <div className="text-center md:text-left max-w-md">
+                <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-3">Start Designing</p>
+                <h2
+                  className="text-2xl md:text-3xl text-white mb-3 leading-tight"
+                  style={{ fontFamily: "'Henry Trial', serif" }}
+                >
+                  Scan to Begin
+                </h2>
+                <p className="text-[#8E8E8E] text-sm leading-relaxed">
+                  Open the app, capture your room, and let our AI curate a design tailored to your style.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Section 1: Transform any room (Hero) */}
         <section className="py-20 bg-[#FAFAFA]">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -280,11 +320,10 @@ export default function Home() {
                   className="text-3xl md:text-5xl text-[#101A2E] mb-6 leading-tight"
                   style={{ fontFamily: "'Henry Trial', serif" }}
                 >
-                  Transform any room<br />with artificial intelligence
+                  AI-powered<br />interior design
                 </h1>
                 <p className="text-[#4B4B4B] leading-relaxed mb-8">
-                  Our AI analyzes your space and generates stunning interior designs in seconds.
-                  Simply record a video of your room, choose your style, and watch the transformation happen.
+                  Capture your space, select a style, and receive a professionally curated design — complete with furniture you can purchase directly.
                 </p>
 
                 {/* Stats */}
@@ -327,12 +366,15 @@ export default function Home() {
         <section id="ai-demo" className="py-20 bg-[#101A2E]">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
-              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-4">Live Demo</p>
-              <h2 className="text-3xl md:text-4xl text-white mb-4" style={{ fontFamily: "'Henry Trial', serif" }}>
-                Experience AI Design
+              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-4">How It Works</p>
+              <h2
+                className="text-3xl md:text-4xl text-white mb-4"
+                style={{ fontFamily: "'Henry Trial', serif" }}
+              >
+                Your Room, Reimagined
               </h2>
               <p className="text-[#8E8E8E]">
-                Watch how our AI transforms your room
+                Capture, customize, and create — in under a minute
               </p>
             </div>
 
@@ -610,9 +652,12 @@ export default function Home() {
         <section className="py-20 bg-[#FAFAFA]">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
-              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-2">How It Works</p>
-              <h2 className="text-3xl text-[#101A2E]" style={{ fontFamily: "'Henry Trial', serif" }}>
-                Design in three simple steps
+              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-2">The Process</p>
+              <h2
+                className="text-3xl text-[#101A2E]"
+                style={{ fontFamily: "'Henry Trial', serif" }}
+              >
+                From Vision to Reality
               </h2>
             </div>
 
@@ -653,44 +698,49 @@ export default function Home() {
         <section className="py-20 bg-white">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="mb-10">
-              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-2">Templates</p>
-              <h2 className="text-3xl text-[#101A2E]" style={{ fontFamily: "'Henry Trial', serif" }}>
-                Ready-made layouts
+              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-2">Curated Designs</p>
+              <h2
+                className="text-3xl text-[#101A2E]"
+                style={{ fontFamily: "'Henry Trial', serif" }}
+              >
+                Designer Templates
               </h2>
             </div>
 
             {/* Template Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {layoutTemplates.map((template, i) => (
-                <motion.div
-                  key={template.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4">
-                    <Image
-                      src={template.image}
-                      alt={template.style}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Arrow button */}
-                    <button className="absolute bottom-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                      <svg className="w-4 h-4 text-[#101A2E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </button>
-                  </div>
-                  <p className="text-[#101A2E] font-medium">{template.style}</p>
-                  <p className="text-[#8E8E8E] text-sm">{template.room}</p>
-                </motion.div>
+                <Link key={template.id} href="/case-study">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="group cursor-pointer"
+                  >
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4">
+                      <Image
+                        src={template.image}
+                        alt={template.style}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Arrow button */}
+                      <div className="absolute bottom-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-4 h-4 text-[#101A2E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="text-[#101A2E] font-medium">{template.style}</p>
+                    <p className="text-[#8E8E8E] text-sm">{template.room}</p>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
+
       </main>
 
       <Footer />
