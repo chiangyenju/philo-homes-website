@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, Search, Heart, ShoppingBag } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -37,7 +37,7 @@ export default function Header() {
 
   const leftMenuItems = [
     { name: 'ABOUT US', href: '/about' },
-    { name: 'COMMUNITY', href: '/community' }
+    { name: 'CASE STUDY', href: '/case-study' }
   ]
 
   return (
@@ -95,23 +95,8 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          {/* Right Icons - Hidden on Mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="hidden lg:flex items-center space-x-6 justify-end"
-          >
-            <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-              <Search size={18} strokeWidth={1.5} />
-            </button>
-            <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-              <Heart size={18} strokeWidth={1.5} />
-            </button>
-            <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-              <ShoppingBag size={18} strokeWidth={1.5} />
-            </button>
-          </motion.div>
+          {/* Right spacer for grid balance */}
+          <div className="hidden lg:block"></div>
 
           {/* Mobile Menu Button */}
           <button
@@ -147,17 +132,6 @@ export default function Header() {
                 </Link>
               ))}
 
-              <div className="flex justify-center space-x-6 pt-6 border-t border-white/10">
-                <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-                  <Search size={18} strokeWidth={1.5} />
-                </button>
-                <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-                  <Heart size={18} strokeWidth={1.5} />
-                </button>
-                <button className="text-white hover:text-vintage-gold transition-all duration-300 p-2 rounded-full hover:bg-white/5">
-                  <ShoppingBag size={18} strokeWidth={1.5} />
-                </button>
-              </div>
             </nav>
           </motion.div>
         )}
