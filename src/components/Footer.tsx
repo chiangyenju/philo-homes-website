@@ -113,20 +113,6 @@ export default function Footer() {
 
             </motion.div>
           </div>
-
-          {/* Quote */}
-          <div className="lg:col-span-3">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-right"
-            >
-              <p className="text-white/80 italic font-light leading-relaxed text-sm">
-                &ldquo;Design a home where you feel at your best.&rdquo;
-              </p>
-            </motion.div>
-          </div>
         </div>
 
         {/* Bottom Section */}
