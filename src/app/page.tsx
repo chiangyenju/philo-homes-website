@@ -29,19 +29,19 @@ const showcaseData = [
   },
 ]
 
-// Layout templates
+// Layout templates (from case studies)
 const layoutTemplates = [
   {
     id: 1,
-    image: '/ai-flow/layout-template-1.png',
-    style: 'Modern Minimalist',
+    image: '/images/templates/bedroom-1-template.jpg',
+    style: 'Modern Bedroom',
     room: 'Bedroom',
   },
   {
     id: 2,
-    image: '/ai-flow/layout-template-2.png',
-    style: 'Classic Comfort',
-    room: 'Living Room',
+    image: '/images/templates/bedroom-2-template.png',
+    style: 'Classic Bedroom',
+    room: 'Bedroom',
   },
 ]
 

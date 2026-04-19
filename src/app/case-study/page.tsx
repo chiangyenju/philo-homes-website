@@ -231,6 +231,48 @@ export default function CaseStudy() {
             </AnimatePresence>
           </div>
         </section>
+
+        {/* Layout Templates Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="text-center mb-10">
+              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-3">More Inspiration</p>
+              <h2
+                className="text-3xl md:text-4xl text-[#101A2E]"
+                style={{ fontFamily: "'Henry Trial', serif" }}
+              >
+                Layout Templates
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="group">
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4">
+                  <Image
+                    src="/ai-flow/layout-template-1.png"
+                    alt="Modern Minimalist Layout"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <p className="text-[#101A2E] font-medium">Modern Minimalist</p>
+                <p className="text-[#8E8E8E] text-sm">Bedroom Layout</p>
+              </div>
+              <div className="group">
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4">
+                  <Image
+                    src="/ai-flow/layout-template-2.png"
+                    alt="Classic Comfort Layout"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <p className="text-[#101A2E] font-medium">Classic Comfort</p>
+                <p className="text-[#8E8E8E] text-sm">Living Room Layout</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
