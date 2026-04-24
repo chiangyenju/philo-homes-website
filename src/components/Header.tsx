@@ -95,8 +95,31 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          {/* Right spacer for grid balance */}
-          <div className="hidden lg:block"></div>
+          {/* Right - Philo Homes by Maven Design LLC */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="hidden lg:flex items-center justify-end gap-4"
+          >
+            <Image
+              src="/logo/logo.png"
+              alt="Philo Homes"
+              width={80}
+              height={26}
+              className="h-5 w-auto"
+            />
+            <span
+              className="text-white/60"
+              style={{
+                fontFamily: 'GT America, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.3px'
+              }}
+            >
+              by Maven Design LLC
+            </span>
+          </motion.div>
 
           {/* Mobile Menu Button */}
           <button
@@ -131,7 +154,24 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-
+              <div className="pt-4 border-t border-white/10 flex items-center gap-3">
+                <Image
+                  src="/logo/logo.png"
+                  alt="Philo Homes"
+                  width={60}
+                  height={20}
+                  className="h-4 w-auto"
+                />
+                <span
+                  className="text-white/60"
+                  style={{
+                    fontFamily: 'GT America, sans-serif',
+                    fontSize: '10px'
+                  }}
+                >
+                  by Maven Design LLC
+                </span>
+              </div>
             </nav>
           </motion.div>
         )}

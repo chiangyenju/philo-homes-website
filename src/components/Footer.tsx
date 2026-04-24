@@ -136,7 +136,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-white/50 text-xs">
-            &copy; {new Date().getFullYear()} Philo Homes. All rights reserved.
+            &copy; {new Date().getFullYear()} Philo Homes, Maven Design LLC. All rights reserved.
           </p>
         </motion.div>
       </div>

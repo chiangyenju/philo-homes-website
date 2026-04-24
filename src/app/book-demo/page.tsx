@@ -220,15 +220,6 @@ export default function BookDemo() {
                 </button>
               </form>
 
-              {/* Contact info */}
-              <div className="mt-10 pt-8 border-t border-[#E1E1E1] text-center">
-                <p className="text-sm text-[#8E8E8E]">
-                  Or reach us directly at{' '}
-                  <a href="mailto:info@philo.homes" className="text-[#D1903E] hover:underline">
-                    info@philo.homes
-                  </a>
-                </p>
-              </div>
             </motion.div>
           ) : (
             <motion.div
