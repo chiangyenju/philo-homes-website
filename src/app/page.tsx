@@ -107,6 +107,13 @@ const galleryImages = [
   },
 ]
 
+// Supporters / backers logos
+const supporters = [
+  { name: 'Zhejiang Lab', logo: '/images/supporters/zli_logo_t.png' },
+  { name: 'Desai Accelerator', logo: '/images/supporters/desai_accelerator_logo.jpg' },
+  { name: 'Spark', logo: '/images/supporters/spark_logo.png' },
+]
+
 // Animated prompt text
 const promptText = "A cozy bedroom with warm lighting, natural wood furniture, soft textiles, and a reading corner by the window..."
 
@@ -752,6 +759,35 @@ export default function Home() {
                     <p className="text-[#8E8E8E] text-sm">{template.room}</p>
                   </motion.div>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Supporters */}
+        <section className="py-20 bg-[#0E284B]">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="text-center mb-12">
+              <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-2">Backed By</p>
+              <h2
+                className="text-3xl text-white"
+                style={{ fontFamily: "'Henry Trial', serif" }}
+              >
+                Our Supporters
+              </h2>
+            </div>
+
+            {/* Logos */}
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+              {supporters.map((supporter) => (
+                <div key={supporter.name} className="relative h-20 w-44 md:h-28 md:w-64">
+                  <Image
+                    src={supporter.logo}
+                    alt={supporter.name}
+                    fill
+                    className="supporter-logo object-contain"
+                  />
+                </div>
               ))}
             </div>
           </div>

@@ -236,6 +236,18 @@ body {
   }
 }
 
+/* Logos sit muted on the navy band, revealing full color on hover.
+   Opacity-only (no color filter) keeps the desai navy matching the
+   section background so its box blends in seamlessly. */
+.supporter-logo {
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.supporter-logo:hover {
+  opacity: 1;
+}
+
 /* Elegant dividers */
 .vintage-divider {
   width: 60px;
