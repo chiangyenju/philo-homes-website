@@ -1,53 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-interface DemoRequest {
-  firstName: string
-  lastName: string
-  email: string
-  phone?: string
-  company?: string
-  message?: string
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const data: DemoRequest = await request.json()
+    const { email } = await request.json()
 
-    // Validate required fields
-    if (!data.firstName || !data.lastName || !data.email) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
-    }
-
-    // Validate email format
+    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(data.email)) {
+    if (!email || !emailRegex.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
       )
     }
 
-    // Format the email content
     const emailContent = `
-New Demo Request from Philo Homes Website
+New Newsletter Subscription
 
-Name: ${data.firstName} ${data.lastName}
-Email: ${data.email}
-Phone: ${data.phone || 'Not provided'}
-Company: ${data.company || 'Not provided'}
-
-Message:
-${data.message || 'No message provided'}
-
----
-Submitted at: ${new Date().toISOString()}
+Email: ${email}
+Subscribed at: ${new Date().toISOString()}
     `.trim()
 
-    // Send email using a simple fetch to an email service
-    // Option 1: Use Resend (if RESEND_API_KEY is set)
+    // Send notification email using Resend
     if (process.env.RESEND_API_KEY) {
       const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -58,9 +31,8 @@ Submitted at: ${new Date().toISOString()}
         body: JSON.stringify({
           from: 'Philo Homes <onboarding@resend.dev>',
           to: ['info@philo.homes'],
-          subject: `Demo Request: ${data.firstName} ${data.lastName}`,
+          subject: `New Newsletter Subscription: ${email}`,
           text: emailContent,
-          reply_to: data.email,
         }),
       })
 
@@ -69,7 +41,7 @@ Submitted at: ${new Date().toISOString()}
         throw new Error('Failed to send email via Resend')
       }
     }
-    // Option 2: Use SendGrid (if SENDGRID_API_KEY is set)
+    // SendGrid fallback
     else if (process.env.SENDGRID_API_KEY) {
       const sendgridResponse = await fetch('https://api.sendgrid.com/v3/mail/send', {
         method: 'POST',
@@ -80,8 +52,7 @@ Submitted at: ${new Date().toISOString()}
         body: JSON.stringify({
           personalizations: [{ to: [{ email: 'info@philo.homes' }] }],
           from: { email: 'noreply@philo.homes', name: 'Philo Homes' },
-          reply_to: { email: data.email },
-          subject: `Demo Request: ${data.firstName} ${data.lastName}`,
+          subject: `New Newsletter Subscription: ${email}`,
           content: [{ type: 'text/plain', value: emailContent }],
         }),
       })
@@ -91,21 +62,18 @@ Submitted at: ${new Date().toISOString()}
         throw new Error('Failed to send email via SendGrid')
       }
     }
-    // Option 3: Log to console for development (no email service configured)
+    // Development fallback
     else {
-      console.log('=== DEMO REQUEST (No email service configured) ===')
+      console.log('=== NEWSLETTER SUBSCRIPTION ===')
       console.log(emailContent)
-      console.log('================================================')
-
-      // In production, you might want to store this in a database
-      // or use a different notification method
+      console.log('===============================')
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error processing demo request:', error)
+    console.error('Error processing newsletter subscription:', error)
     return NextResponse.json(
-      { error: 'Failed to process request' },
+      { error: 'Failed to process subscription' },
       { status: 500 }
     )
   }
