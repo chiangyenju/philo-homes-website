@@ -207,37 +207,18 @@ export default function Home() {
       <Header />
 
       <main className="pt-20">
-        {/* Section 0: Try It Now - QR Code */}
+        {/* Section 0: Try It Now */}
         <section className="py-16 bg-[#101A2E]">
           <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
-              {/* QR Code */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="w-44 h-44 rounded-2xl border-2 border-[#D1903E] p-2 shadow-2xl">
-                  <div className="w-full h-full rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/qr-code.png"
-                      alt="Scan to try Philo Homes"
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-
+            <div className="flex flex-col items-center justify-center">
               {/* Content */}
-              <div className="text-center md:text-left max-w-md">
+              <div className="text-center max-w-md">
                 <p className="text-[10px] text-[#D1903E] uppercase tracking-[0.2em] mb-3">Start Designing</p>
                 <h2
                   className="text-2xl md:text-3xl text-white mb-3 leading-tight"
                   style={{ fontFamily: "'Henry Trial', serif" }}
                 >
-                  Scan to Begin
+                  Begin Your Design
                 </h2>
                 <p className="text-[#8E8E8E] text-sm leading-relaxed mb-4">
                   Open the app, capture your room, and let our AI curate a design tailored to your style.
