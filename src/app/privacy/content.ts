@@ -596,7 +596,7 @@ export const sections: Section[] = [
     blocks: [
       {
         type: 'p',
-        text: 'We review this Privacy Policy at least once every 12 months and whenever our practices, the Services, or applicable law change, and we update the “Last Updated” date above with each revision. Prior versions are archived at https://philo.homes/privacy/archive.',
+        text: 'We review this Privacy Policy at least once every 12 months and whenever our practices, the Services, or applicable law change, and we update the “Last Updated” date above with each revision. Prior versions are available on request at info@philo.homes.',
       },
       { type: 'p', text: 'How we notify you depends on the significance of the change:' },
       {

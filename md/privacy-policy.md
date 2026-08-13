@@ -230,7 +230,7 @@ The Services are operated from the United States and are intended for U.S. resid
 
 ## 17. Changes to This Privacy Policy
 
-We review this Privacy Policy at least once every 12 months and whenever our practices, the Services, or applicable law change, and we update the "Last Updated" date above with each revision. Prior versions are archived at [https://philo.homes/privacy/archive].
+We review this Privacy Policy at least once every 12 months and whenever our practices, the Services, or applicable law change, and we update the "Last Updated" date above with each revision. Prior versions are available on request at info@philo.homes.
 
 How we notify you depends on the significance of the change:
 
