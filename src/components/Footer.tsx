@@ -13,6 +13,7 @@ export default function Footer() {
   const footerLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'Case Study', href: '/case-study' },
+    { name: 'Privacy Policy', href: '/privacy' },
   ]
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
